@@ -34,19 +34,18 @@ class HomeActivity : AppCompatActivity() {
 
         val url = "https://randomuser.me/api/?results=10&nat=fr"
         val jsonObject = JSONObject()
-        jsonObject.put("results", "10")
-        val jsonRequest = JsonObjectRequest(Request.Method.POST, url, jsonObject, {
+        val jsonRequest = JsonObjectRequest(Request.Method.GET, url, jsonObject, {
             Log.w("HomeActivity","reussite : $it")
             handleAPIData(it.toString())
         }, Response.ErrorListener {
-            Log.e("CategoryActivity", "erreur : $it")
+            Log.e("HomeActivity", "erreur : $it")
         })
         Volley.newRequestQueue(this).add(jsonRequest)
     }
 
     private fun handleAPIData(data: String){
-        var contactResult = Gson().fromJson(data, Results::class.java)
-        val contactCategory= listOf(contactResult)
+        var contactResult = Gson().fromJson(data, Contact::class.java)
+        val contactCategory= contactResult.results
 
         val adapter = binding.recyclerViewContact.adapter as HomeAdapter
         adapter.refreshList(contactCategory)

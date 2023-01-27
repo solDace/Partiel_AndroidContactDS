@@ -1,5 +1,6 @@
 package fr.isen.sorroche.androidcontactds
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,7 @@ class HomeAdapter (var dataSet: List<Results>): RecyclerView.Adapter<HomeAdapter
 
     fun refreshList(contactFromAPI: List<Results>){
         dataSet =contactFromAPI
+        Log.w("data",dataSet.toString())
         notifyDataSetChanged()
     }
 
