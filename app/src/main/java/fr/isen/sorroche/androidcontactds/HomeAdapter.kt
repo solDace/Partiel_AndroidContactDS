@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 import fr.isen.sorroche.androidcontactds.model.Contact
 import fr.isen.sorroche.androidcontactds.model.Results
 
-class HomeAdapter (var dataSet: List<Results>): RecyclerView.Adapter<HomeAdapter.ViewHolder>(){
+class HomeAdapter (var dataSet: List<Results>,val onItemClickListener: (Results) -> Unit): RecyclerView.Adapter<HomeAdapter.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nom: TextView = view.findViewById(R.id.nom_contact)
         val address: TextView = view.findViewById(R.id.addresse_contact)
@@ -34,13 +34,14 @@ class HomeAdapter (var dataSet: List<Results>): RecyclerView.Adapter<HomeAdapter
         viewHolder.nom.text = dataSet[position].name?.first +" "+ dataSet[position].name?.last
         viewHolder.address.text = dataSet[position].location?.street?.number.toString()+" "+dataSet[position].location?.street?.name+" "+dataSet[position].location?.city+" "+
                 dataSet[position].location?.postcode +" "+dataSet[position].location?.country
-        Log.i("mail",dataSet[position].email.toString())
         viewHolder.mail.text = dataSet[position].email
 
         val firstImage = dataSet[position].picture?.large
         Picasso.get().load(firstImage).resize(50, 50).into(viewHolder.image)
 
-
+        viewHolder.itemView.setOnClickListener{
+            onItemClickListener(dataSet[position])
+        }
 
     }
 

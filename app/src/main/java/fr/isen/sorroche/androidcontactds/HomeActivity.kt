@@ -26,7 +26,17 @@ class HomeActivity : AppCompatActivity() {
 
 
         binding.recyclerViewContact.layoutManager = LinearLayoutManager(this)
-        binding.recyclerViewContact.adapter = HomeAdapter(arrayListOf())
+        binding.recyclerViewContact.adapter = HomeAdapter(arrayListOf()){
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("photo", it.picture?.large)
+            intent.putExtra("nom", it.name?.first+" "+it.name?.last)
+            intent.putExtra("adresse", it.location?.street?.number.toString()+" "+it.location?.street?.name+" "+it.location?.city+" "+
+                    it.location?.postcode +" "+it.location?.country)
+            intent.putExtra("photo", it.email)
+            intent.putExtra("photo", it.phone)
+            intent.putExtra("photo", it.dob?.date)
+            startActivity(intent)
+        }
         loadDishesFromAPI()
     }
 
