@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pngtree_blue_minimalistic_smart_technology_background_image_279070"
     tools:context=".DetailActivity">
 
     <ImageView
@@ -58,8 +59,8 @@
 
     <TextView
         android:id="@+id/annivDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
         android:layout_marginTop="30dp"
         android:text="anniv"
         app:layout_constraintEnd_toEndOf="parent"
