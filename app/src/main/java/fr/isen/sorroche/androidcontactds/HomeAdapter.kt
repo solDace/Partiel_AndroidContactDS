@@ -29,11 +29,14 @@ class HomeAdapter (var dataSet: List<Results>): RecyclerView.Adapter<HomeAdapter
     override fun getItemCount() = dataSet.size
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.nom.text = dataSet[position].name.toString()
-        viewHolder.address.text = dataSet[position].location.toString()
+        viewHolder.nom.text = dataSet[position].name?.first +" "+ dataSet[position].name?.last
+        viewHolder.address.text = dataSet[position].location?.street?.number.toString()+" "+dataSet[position].location?.street?.name+" "+dataSet[position].location?.city+" "+
+                dataSet[position].location?.postcode +" "+dataSet[position].location?.country
         viewHolder.mail.text = dataSet[position].email
 
-        val firstImage = dataSet[position].picture
+        val firstImage = dataSet[position].picture?.large
+        Picasso.get().load(firstImage).resize(50, 50).into(viewHolder.image)
+
 
 
     }
