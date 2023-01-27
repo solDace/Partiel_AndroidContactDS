@@ -1,5 +1,6 @@
 package fr.isen.sorroche.androidcontactds
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,10 +29,12 @@ class HomeAdapter (var dataSet: List<Results>): RecyclerView.Adapter<HomeAdapter
 
     override fun getItemCount() = dataSet.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.nom.text = dataSet[position].name?.first +" "+ dataSet[position].name?.last
         viewHolder.address.text = dataSet[position].location?.street?.number.toString()+" "+dataSet[position].location?.street?.name+" "+dataSet[position].location?.city+" "+
                 dataSet[position].location?.postcode +" "+dataSet[position].location?.country
+        Log.i("mail",dataSet[position].email.toString())
         viewHolder.mail.text = dataSet[position].email
 
         val firstImage = dataSet[position].picture?.large
