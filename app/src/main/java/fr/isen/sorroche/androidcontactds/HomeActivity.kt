@@ -32,9 +32,9 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("nom", it.name?.first+" "+it.name?.last)
             intent.putExtra("adresse", it.location?.street?.number.toString()+" "+it.location?.street?.name+" "+it.location?.city+" "+
                     it.location?.postcode +" "+it.location?.country)
-            intent.putExtra("photo", it.email)
-            intent.putExtra("photo", it.phone)
-            intent.putExtra("photo", it.dob?.date)
+            intent.putExtra("mail", it.email)
+            intent.putExtra("num", it.phone)
+            intent.putExtra("date", it.dob?.date)
             startActivity(intent)
         }
         loadDishesFromAPI()
